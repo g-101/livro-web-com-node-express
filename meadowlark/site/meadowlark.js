@@ -19,7 +19,19 @@ app.use(express.static(__dirname + '/public'));
 // quando a rota for encontrada, o callback é chamado
 // o callback recebe dois parametros: objetos de requisição e resposta.
 app.get('/', (request, response) => response.render('home'));
-app.get('/about', (request, response) => response.render('about'));
+
+const fortunes = [
+  'Conquer your fears or they will conquer you.',
+  'Rivers need springs.',
+  "Do not fear what you don't know.",
+  'You will have a pleasant surprise.',
+  'Whenever possible, keep it simple.',
+];
+
+app.get('/about', (request, response) => {
+  const randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+  response.render('about', { fortune: randomFortune });
+});
 
 // app.use é o metodo que o express adiciona middleware
 // a ordem que as rotas e middleware estão IMPORTA
