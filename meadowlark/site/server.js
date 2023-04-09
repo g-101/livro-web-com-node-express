@@ -9,6 +9,10 @@ const port = process.env.PORT || 3333;
 // pdf, html, png
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+// O que são arquivos estaticos?
+// arquivos sem nenhum tipo de manipulação
+// css, imagens, javascript do lado do cliente
+app.use(express.static(__dirname + '/public'));
 
 // app.METHOD recebe um path e um callback
 // o path define a rota(não é case sensitive)
